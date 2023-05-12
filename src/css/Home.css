@@ -1,0 +1,13 @@
+body{
+    background-image: url('./empty-product.jpg');
+    background-size: cover;
+}
+
+.container{
+    margin-top: 20px;
+    align-items: center;
+}
+
+.card-link{
+    margin: 10px;
+}

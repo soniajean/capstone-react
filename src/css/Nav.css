@@ -1,0 +1,12 @@
+.navbar {
+  background: rgb(241, 231, 247);
+}
+
+.nav-item{
+background: white;
+margin-right: 15px;
+border-radius: 10px;
+color: black;
+max-width: fit-content;
+padding: 10px;
+}
