@@ -55,6 +55,8 @@ const Nav = props => {
                     <Link className="nav-item nav-link active m-2" to='/'>Home</Link>
                     <Link className="nav-item nav-link active" to='/shop'>Shop</Link>
                     <Link className="nav-item nav-link active" to='/cart'>Cart</Link>
+                   
+                    
                     {
                         signinStatus === 'loading' ?
                             <button className="btn btn-primary" disabled>Waiting. . .  to. . . .  log . . .  in</button> :
