@@ -1,13 +1,15 @@
 import { useContext, useState, useEffect} from "react";
 import axios from "axios";
 import { DataContext } from "../context/DataProvider";
-import { useDatabase, useUser } from "reactfire";
+import { useDatabase, useUser,useFirestore } from "reactfire";
 import { ref, set } from "firebase/database";
+import {collection, doc} from 'firebase/firestore'
 
 
-// const Shop = () => {
-//     const db = useDatabase();
-//     const { data:user } = useUser();
+const Shop = () => {
+    const db = useDatabase();
+    console.log(db)
+    const { data:user } = useUser();
 //     const [products, setProducts] = useState(( )=> loadProductData())
 //     const local_url = 'http://127.0.0.1:5000/api/products';
 //     console.log(local_url);
@@ -24,27 +26,10 @@ import { ref, set } from "firebase/database";
 
 //     }
 
-    const Shop = () => {
-        const db = useDatabase();
-        const { data:user } = useUser();
-        const web_url = 'https://capstone-final-m79u.onrender.com/view-all-products'
-        const local_url = 'http://127.0.0.1:5000/api/products';
-        console.log(web_url,local_url);
-        console.log(local_url);
-        async function getProductData() {
-            let response = await axios.get(local_url, {headers:{"Access-Control-Allow-Origin": "*", "Content-Type": "application/json"}});
-            console.log(response)
-            return response.status === 200 ? response.data : null
-        }
-    
-        async function loadProductData() {
-            let data = await getProductData();
-            console.log(data, typeof data);
-            setProducts(data.data)
-        }
-        const [products, setProducts] = useState(( )=> loadProductData());
-    
-        
+  const productRef=collection(db, 'products')
+        const [products, setProducts] = useState([]);
+
+    console.log(productRef)
     
       
           
