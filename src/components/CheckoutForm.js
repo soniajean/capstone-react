@@ -7,16 +7,6 @@ const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
 
-    /*
-    What are the steps/flow here
-    1. Create payment intent- checking on the back with the cart- DONE!
-    2.  If stripe has loaded, user submits payment info
-    3. we process that info- aka send api call to stripe
-    4. Show status- has it been submitted?  Processing? complete/incomplete?
-    5. show confirmation or clear cart or whatever we want to do when the payment portion is done!
-    */
-
-    // set some state hooks that will aid us in conditional handling
     const [showPay, setShowPay] = useState(true);
     const [showForm, setShowForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');

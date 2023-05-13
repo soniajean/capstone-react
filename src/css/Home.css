@@ -1,6 +1,6 @@
 body{
     background-image: url('./pic1.jpg');
-    background-size: cover;
+    background-size: 300px 100px;
 }
 
 .container{

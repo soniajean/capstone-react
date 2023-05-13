@@ -7,6 +7,7 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { get, child, ref } from "firebase/database";
 
 
+
 const Nav = props => {
 
     const { cart, setCart } = useContext(DataContext);
@@ -69,7 +70,7 @@ const Nav = props => {
                     }
                     {cart.size === 0 ?
                         <span id="r-span"><Link className="nav-item nav-link active" to='/shop'><i className="fa-solid fa-cart-shopping"></i></Link></span> :
-                        <span id="r-span"><Link className="nav-item nav-link active" to='/cart'>{cart.size} - ${cart.total.toFixed(2)} <i className="fa-solid fa-cart-shopping"></i></Link></span>
+                        <span id="r-span"><Link className="nav-item nav-link active" to='/cart'>{cart.size} - ${cart.total.toFixed} <i className="fa-solid fa-cart-shopping"></i></Link></span>
                     }
                 </div>
             </nav>
