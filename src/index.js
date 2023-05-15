@@ -6,6 +6,7 @@ import './css/index.css';
 import { BrowserRouter } from 'react-router-dom';
 import ProviderLayer from './ProviderLayer';
 import { FirebaseAppProvider } from 'reactfire';
+import {addDoc} from 'firebase/firestore';
 
 // const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
 // const FIREBASE_AUTH_DOMAIN = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN;

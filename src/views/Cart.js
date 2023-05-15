@@ -78,7 +78,7 @@ const Cart = () => {
                 return <ListGroup.Item key={index}>
                     <Card.Img variant="top" src={product.data.img_url} id="p-img"/>
                     <h3>{product.data.title}</h3>
-                    <h5>{product.data.desc} {product.data.category}</h5>
+                    {/* <h5>{product.data.desc} {product.data.category}</h5> */}
                     <h6>Price: {product.data.price}</h6>
                     <Button variant="secondary" id="dec-btn" onClick={() => {decreaseQuantity(product.data.id)}}><b> - 1 </b></Button>
                     <span id="q-span">{product.quantity}</span>
