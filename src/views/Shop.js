@@ -41,8 +41,8 @@ console.log(carts)
 
 
 // const addProduct = (productproduct) => {
-  console.log(product);
-  console.log(user);
+//   console.log(product);
+//   console.log(user);
   // uid: user.uid,
 //   console.log(product);
 //   console.log(user);
