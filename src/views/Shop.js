@@ -40,7 +40,10 @@ const { data: carts } = useFirestoreDocData(cartQuery);
 console.log(carts)
 
 
-// const addProduct = (product) => {
+// const addProduct = (productproduct) => {
+  console.log(product);
+  console.log(user);
+  // uid: user.uid,
 //   console.log(product);
 //   console.log(user);
 //   // uid: user.uid,
