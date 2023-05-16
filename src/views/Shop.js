@@ -1,13 +1,7 @@
 import { ref, set } from "firebase/database";
 import { collection, doc, query } from "firebase/firestore";
 import { useContext, useState } from "react";
-import {
-  useDatabase,
-  useFirestore,
-  useFirestoreCollectionData,
-  useFirestoreDocData,
-  useUser,
-} from "reactfire";
+import {  useDatabase,   useFirestore,   useFirestoreCollectionData,   useFirestoreDocData,   useUser, } from "reactfire";
 import { DataContext } from "../context/DataProvider";
 import {addDoc} from 'firebase/firestore';
 
@@ -26,31 +20,42 @@ const Shop = () => {
   const { status, data: products } = useFirestoreCollectionData(productsQuery);
   const [productsState, setProductsState] = useState([]);
 
-//   const addProduct = (product) => {
-//     let copyCart = { ...cart };
+  const addProduct = (product) => {
+    let copyCart = { ...cart };
 
-//     copyCart.size++;
-//     copyCart.total += product.price;
-//     copyCart.products[product.id]
-//       ? copyCart.products[product.id].quantity++
-//       : (copyCart.products[product.id] = { data: product, quantity: 1 });
-//     console.log(copyCart);
-//     if (user) {
-//       set(ref(db, "carts/" + user.uid), copyCart);
-//     }
-//     setCart(copyCart);
-//   };
+    copyCart.size++;
+    copyCart.total += product.price;
+    copyCart.products[product.id]
+      ? copyCart.products[product.id].quantity++
+      : (copyCart.products[product.id] = { data: product, quantity: 1 });
+    console.log(copyCart);
+    if (user) {
+      set(ref(db, "carts/" + user.uid), copyCart);
+    }
+    setCart(copyCart);
+  };
 const cartCollection = doc(firestore, 'carts', 'test')
 const cartQuery = query(cartCollection)   
 const { data: carts } = useFirestoreDocData(cartQuery);
 console.log(carts)
 
 
-const addProduct = () => {
-    addDoc(productsCollection, { uid: user.uid, productid: product.id});
-  };
+// const addProduct = (product) => {
+//   console.log(product);
+//   console.log(user);
+//   // uid: user.uid,
+//     addDoc(productsCollection, { uid: user.uid, productid: product.id});
+//   };
 
-
+//   const addProduct = async (id) => {
+//     firestore
+//       .collection('carts')
+//       .doc(user.uid)
+//       .set({
+//         products: [id],
+//       });
+//     console.log('added to cart', id);
+//   };
 
 const addToCart =(product) => {
 }
@@ -76,7 +81,7 @@ const addToCart =(product) => {
                 style={{ width: 18 + "rem" }}
               >
                 <img
-                  src={product.image}
+                  src={product.img_url}
                   className="card-img-top mt-3 rounded"
                   alt={product.title}
                 />
