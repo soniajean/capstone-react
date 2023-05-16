@@ -46,7 +46,10 @@ const { data: carts } = useFirestoreDocData(cartQuery);
 console.log(carts)
 
 
-const addProduct = () => {
+const addProduct = (product) => {
+  console.log(product);
+  console.log(user);
+  // uid: user.uid,
     addDoc(productsCollection, { uid: user.uid, productid: product.id});
   };
 
@@ -76,7 +79,7 @@ const addToCart =(product) => {
                 style={{ width: 18 + "rem" }}
               >
                 <img
-                  src={product.image}
+                  src={product.img_url}
                   className="card-img-top mt-3 rounded"
                   alt={product.title}
                 />
