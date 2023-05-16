@@ -1,6 +1,6 @@
 import { ref, set } from "firebase/database";
 import { collection, doc, query } from "firebase/firestore";
-import { useContext, useState,orderBy } from "react";
+import { useContext, useState } from "react";
 import {
   useDatabase,
   useFirestore,
@@ -45,23 +45,14 @@ const cartQuery = query(cartCollection)
 const { data: carts } = useFirestoreDocData(cartQuery);
 console.log(carts)
 
-const ProductsList = () => {
-    const firestore = useFirestore();
-    const productsCollection = collection(firestore, 'products');
-    const [isAscending, setIsAscending] = useState(false);
-    const productsQuery = query(productsCollection, orderBy('commonName', isAscending ? 'asc' : 'desc'));
-    const { status, data: products} = useFirestoreCollectionData(productsQuery, {
-      idField: 'id',
-    });
-  
+
 const addProduct = () => {
-    addDoc(productsCollection, {uid: user.uid, productid: products.productsid});
+    addDoc(productsCollection, { uid: user.uid, productid: product.id});
   };
-  
 
 
 
-// const addToCart =(product) => {
+const addToCart =(product) => {
 }
 
   return (
