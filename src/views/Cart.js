@@ -8,7 +8,13 @@ import { useDatabase, useUser } from "reactfire";
 import { set, ref } from "firebase/database";
 
 const Cart = () => {
- 
+    /*
+    1. access to  our cart and setCart --- context
+    2. clear the entire cart
+    3. remove all of a certain item
+    4. increment  ( + )
+    5. decrement    ( - )
+    */
 
     const db = useDatabase();
     const { data:user } = useUser();
@@ -23,13 +29,13 @@ const Cart = () => {
         
     }
 
-    const increaseQuantity = id => {
+    const increaseQuantity = title => {
         // create a copy
         let copyCart = {...cart};
         // modify the copy
         copyCart.size++;
-        copyCart.total += copyCart.products[id].data.price;
-        copyCart.products[id].quantity++;
+        copyCart.total += copyCart.products[title].data.price;
+        copyCart.products[title].quantity++;
         //set the state
         if (user){
             set(ref(db, 'carts/' + user.uid), copyCart);
@@ -37,23 +43,23 @@ const Cart = () => {
         setCart(copyCart);
     }
 
-    const decreaseQuantity = id => {
+    const decreaseQuantity = title => {
         let copyCart = {...cart};
         copyCart.size--;
-        copyCart.total -= copyCart.products[id].data.price;
-        copyCart.products[id].quantity > 1 ?
-        copyCart.products[id].quantity-- :
-        delete copyCart.products[id];
+        copyCart.total -= copyCart.products[title].data.price;
+        copyCart.products[title].quantity > 1 ?
+        copyCart.products[title].quantity-- :
+        delete copyCart.products[title];
         if (user){
             set(ref(db, 'carts/' + user.uid), copyCart);
         }
         setCart(copyCart)
     }
-    const removeItem = id => {
+    const removeItem = title => {
         let copyCart = {...cart};
-        copyCart.size -= copyCart.products[id].quantity;
-        copyCart.total -= copyCart.products[id].quantity*copyCart.products[id].data.price;
-        delete copyCart.products[id];
+        copyCart.size -= copyCart.products[title].quantity;
+        copyCart.total -= copyCart.products[title].quantity*copyCart.products[title].data.price;
+        delete copyCart.products[title];
         if (user){
             set(ref(db, 'carts/' + user.uid), copyCart);
         }
@@ -71,14 +77,14 @@ const Cart = () => {
                 console.log(product);
                 return <ListGroup.Item key={index}>
                     <Card.Img variant="top" src={product.data.img_url} id="p-img"/>
-                    <h3>{product.data.title}</h3>
-                    {/* <h5>{product.data.desc} {product.data.category}</h5> */}
+                    <h3>{product.data.name}</h3>
+                    <h5>{product.data.make} {product.data.model}</h5>
                     <h6>Price: {product.data.price}</h6>
-                    <Button variant="secondary" id="dec-btn" onClick={() => {decreaseQuantity(product.data.id)}}><b> - 1 </b></Button>
-                    <span id="q-span">{product.quantity}</span>
-                    <Button variant="success" id="inc-btn" onClick={() => {increaseQuantity(product.data.id)}}><b> + 1 </b></Button>
+                    <Button variant="secondary" title="dec-btn" onClick={() => {decreaseQuantity(product.data.title)}}><b> - 1 </b></Button>
+                    <span title="q-span">{product.quantity}</span>
+                    <Button variant="success" title="inc-btn" onClick={() => {increaseQuantity(product.data.title)}}><b> + 1 </b></Button>
                     <br></br>
-                    <Button variant="warning" id="r-item" onClick={() => {removeItem(product.data.id)}}>remove this item</Button>
+                    <Button variant="warning" title="r-item" onClick={() => {removeItem(product.data.title)}}>remove this item</Button>
                 </ListGroup.Item>
             })}
             
@@ -91,3 +97,4 @@ const Cart = () => {
     )
 }
 export default Cart;
+
