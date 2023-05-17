@@ -8,13 +8,7 @@ import { useDatabase, useUser } from "reactfire";
 import { set, ref } from "firebase/database";
 
 const Cart = () => {
-    /*
-    1. access to  our cart and setCart --- context
-    2. clear the entire cart
-    3. remove all of a certain item
-    4. increment  ( + )
-    5. decrement    ( - )
-    */
+ 
 
     const db = useDatabase();
     const { data:user } = useUser();

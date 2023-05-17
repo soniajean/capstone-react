@@ -15,7 +15,7 @@ const Shop = () => {
   const ref = doc(firestore, 'count', 'counter');
   
 
-  const productsCollection = collection(firestore, "products");
+  const productsCollection = collection(firestore, 'products');
   const productsQuery = query(productsCollection);
   const { status, data: products } = useFirestoreCollectionData(productsQuery);
   const [productsState, setProductsState] = useState([]);
@@ -25,12 +25,13 @@ const Shop = () => {
 
     copyCart.size++;
     copyCart.total += product.price;
-    copyCart.products[product.id]
-      ? copyCart.products[product.id].quantity++
-      : (copyCart.products[product.id] = { data: product, quantity: 1 });
+    copyCart.products[product.title]
+      ? copyCart.products[product.title].quantity++
+      : (copyCart.products[product.title] = { data: product, quantity: 1 });
     console.log(copyCart);
+
     if (user) {
-      set(ref(db, "carts/" + user.uid), copyCart);
+      set(ref(db, 'carts/' + user.uid), copyCart);
     }
     setCart(copyCart);
   };
