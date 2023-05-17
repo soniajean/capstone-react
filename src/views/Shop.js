@@ -41,6 +41,9 @@ const Shop = () => {
     console.log(cart)
     let copyCart = { ...cart };
     console.log(copyCart)
+    if (!copyCart.products) {
+      copyCart.products = {};
+    }
     copyCart.size++;
     copyCart.total += product.price;
     copyCart.products[product.title]
