@@ -12,7 +12,7 @@ const Shop = () => {
  
 
   const firestore = useFirestore();
-  const ref = doc(firestore, 'count', 'counter');
+  // const ref = doc(firestore, 'count', 'counter');
   
 
   const productsCollection = collection(firestore, 'products');
@@ -20,30 +20,14 @@ const Shop = () => {
   const { status, data: products } = useFirestoreCollectionData(productsQuery);
   const [productsState, setProductsState] = useState([]);
 
-  const addProduct = (product) => {
-    let copyCart = { ...cart };
-
-    copyCart.size++;
-    copyCart.total += product.price;
-    copyCart.products[product.id]
-      ? copyCart.products[product.id].quantity++
-      : (copyCart.products[product.id] = { data: product, quantity: 1 });
-    console.log(copyCart);
-
-    // if (user) {
-    //   set(ref(db, 'carts/' + user.uid), copyCart);
-    // }
-    // setCart(copyCart);
-  };
-
   // const addProduct = (product) => {
   //   let copyCart = { ...cart };
 
   //   copyCart.size++;
   //   copyCart.total += product.price;
-  //   copyCart.products[product.title]
-  //     ? copyCart.products[product.title].quantity++
-  //     : (copyCart.products[product.title] = { data: product, quantity: 1 });
+  //   copyCart.products[product.id]
+  //     ? copyCart.products[product.id].quantity++
+  //     : (copyCart.products[product.id] = { data: product, quantity: 1 });
   //   console.log(copyCart);
 
   //   if (user) {
@@ -51,10 +35,28 @@ const Shop = () => {
   //   }
   //   setCart(copyCart);
   // };
+
+  const addProduct = (product) => {
+    console.log(product)
+    console.log(cart)
+    let copyCart = { ...cart };
+    console.log(copyCart)
+    copyCart.size++;
+    copyCart.total += product.price;
+    copyCart.products[product.title]
+      ? copyCart.products[product.title].quantity++
+      : (copyCart.products[product.title] = { data: product, quantity: 1 });
+    console.log(copyCart);
+
+    if (user) {
+      set(ref(db, 'carts/' + user.uid), copyCart);
+    }
+    setCart(copyCart);
+  };
 const cartCollection = doc(firestore, 'carts', 'test')
 const cartQuery = query(cartCollection)   
 const { data: carts } = useFirestoreDocData(cartQuery);
-console.log(carts)
+
 
 
 // const addProduct = (productproduct) => {
