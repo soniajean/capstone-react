@@ -25,16 +25,32 @@ const Shop = () => {
 
     copyCart.size++;
     copyCart.total += product.price;
-    copyCart.products[product.title]
-      ? copyCart.products[product.title].quantity++
-      : (copyCart.products[product.title] = { data: product, quantity: 1 });
+    copyCart.products[product.id]
+      ? copyCart.products[product.id].quantity++
+      : (copyCart.products[product.id] = { data: product, quantity: 1 });
     console.log(copyCart);
 
-    if (user) {
-      set(ref(db, 'carts/' + user.uid), copyCart);
-    }
-    setCart(copyCart);
+    // if (user) {
+    //   set(ref(db, 'carts/' + user.uid), copyCart);
+    // }
+    // setCart(copyCart);
   };
+
+  // const addProduct = (product) => {
+  //   let copyCart = { ...cart };
+
+  //   copyCart.size++;
+  //   copyCart.total += product.price;
+  //   copyCart.products[product.title]
+  //     ? copyCart.products[product.title].quantity++
+  //     : (copyCart.products[product.title] = { data: product, quantity: 1 });
+  //   console.log(copyCart);
+
+  //   if (user) {
+  //     set(ref(db, 'carts/' + user.uid), copyCart);
+  //   }
+  //   setCart(copyCart);
+  // };
 const cartCollection = doc(firestore, 'carts', 'test')
 const cartQuery = query(cartCollection)   
 const { data: carts } = useFirestoreDocData(cartQuery);
@@ -97,11 +113,11 @@ const addToCart =(product) => {
                   {/* <p className="card-text">{product.description}</p> */}
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item">Title- {product.title}</li>
+                  <li className="list-group-item">{product.title}</li>
                   {/* <li className="list-group-item">
                     Description- {product.description}
                   </li> */}
-                  <li className="list-group-item">Price-${product.price}</li>
+                  <li className="list-group-item">Price ${product.price}</li>
                 </ul>
                 <div className="card-body">
                   <button
