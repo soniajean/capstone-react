@@ -30,9 +30,8 @@ const Cart = () => {
     }
 
     const increaseQuantity = title => {
-        // create a copy
+        
         let copyCart = {...cart};
-        // modify the copy
         copyCart.size++;
         copyCart.total += copyCart.products[title].data.price;
         copyCart.products[title].quantity++;
