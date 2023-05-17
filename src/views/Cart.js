@@ -73,8 +73,9 @@ const Cart = () => {
                     {/* <h3>{product.data.title}</h3> */}
                     <h5>{product.data.description}</h5>
                     <h6>Price: {product.data.price}</h6>
-                    <Button variant="secondary" title="dec-btn" onClick={() => {decreaseQuantity(product.data.title)}}><b> - 1 </b></Button>
                     <span title="q-span">{product.quantity}</span>
+                    <Button variant="secondary" title="dec-btn" onClick={() => {decreaseQuantity(product.data.title)}}><b> - 1 </b></Button>
+                   
                     <Button variant="success" title="inc-btn" onClick={() => {increaseQuantity(product.data.title)}}><b> + 1 </b></Button>
                     <br></br>
                     <Button variant="warning" title="r-item" onClick={() => {removeItem(product.data.title)}}>remove this item</Button>
