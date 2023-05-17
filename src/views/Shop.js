@@ -70,7 +70,7 @@ const addToCart =(product) => {
               <div
                 className="card m-4 border border-4 border-dark"
                 key={index}
-                style={{ width:18 + "rem" }}
+                style={{ width:10 + "rem" }}
               >
                 <img
                   src={product.img_url}
@@ -78,10 +78,10 @@ const addToCart =(product) => {
                   alt={product.title}
                 />
                 <div className="card-body">
-                  {/* <h3>{product.title}</h3> */}
-                  <h5 className="card-title">
-                    {product.title} {product.category}
-                  </h5>
+                  <h6>{product.title}</h6>
+                  <h6 className="card-title">
+                    {/* { {product.category}product.title} */}
+                  </h6>
                   {/* <p className="card-text">{product.description}</p> */}
                 </div>
                 <ul className="list-group list-group-flush">
